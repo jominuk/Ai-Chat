@@ -16,34 +16,41 @@ const Chat = () => {
 
   return (
     <>
-      <StGo onClick={() => navigate("/ai")}>Chat 바로가기</StGo>
+      <ToggleContainer>
+        <Toggle
+          icons={{
+            checked: (
+              <span role="img" aria-label="moon">
+                🌙
+              </span>
+            ),
+            unchecked: (
+              <span role="img" aria-label="sun">
+                ☀️
+              </span>
+            ),
+          }}
+          onChange={toggleDarkMode}
+        />
+      </ToggleContainer>
 
-      <Toggle
-        icons={{
-          checked: (
-            <span role="img" aria-label="moon">
-              🌙
-            </span>
-          ),
-          unchecked: (
-            <span role="img" aria-label="sun">
-              ☀️
-            </span>
-          ),
-        }}
-        onChange={toggleDarkMode}
-      />
+      <StGo onClick={() => navigate("/ai")}>Chat 바로가기</StGo>
     </>
   );
 };
 
 export default Chat;
 
+const ToggleContainer = styled.div`
+  margin: 0 0 30px 50px;
+`;
+
 const StGo = styled.div`
   background-color: pink;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: auto;
   height: 40px;
   width: 150px;
   font-size: 20px;

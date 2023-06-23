@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { LayoutProps } from "src/type/type";
+import { DarkMode, LayoutProps } from "src/type/type";
 import { useDarkMode } from "src/context/DarkModeContext";
 
 const Layout: FC<LayoutProps> = ({ children }) => {
@@ -15,7 +15,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
 export default Layout;
 
-const StBackLay = styled.div<{ darkMode: any }>`
+const StBackLay = styled.div<{ darkMode: DarkMode }>`
   background-color: ${({ darkMode }) => (darkMode ? "black" : "powderblue")};
   min-height: 100vh; /* Set the minimum height of the container to 100% of the viewport height */
   display: flex;

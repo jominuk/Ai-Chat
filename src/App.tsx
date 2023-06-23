@@ -5,7 +5,7 @@ import { DarkModeProvider } from "./context/DarkModeContext";
 const App = () => {
   return (
     <>
-      <DarkModeProvider>
+      <DarkModeProvider darkMode={undefined}>
         <Router />
       </DarkModeProvider>
     </>

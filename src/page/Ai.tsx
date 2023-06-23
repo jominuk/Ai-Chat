@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect, FC, FormEvent } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import { styled } from "styled-components";
-import { Message, Sender } from "src/type/type";
+import { Message, Sender, DarkMode } from "src/type/type";
 
-const Ai: FC<any> = ({ darkMode }) => {
+const Ai: FC<DarkMode> = ({ darkMode }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement | null>(null);

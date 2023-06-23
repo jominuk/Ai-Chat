@@ -12,3 +12,8 @@ export interface Message {
 export interface Sender {
   sender: string;
 }
+
+export interface DarkMode {
+  darkMode: string | any;
+  children: any;
+}
