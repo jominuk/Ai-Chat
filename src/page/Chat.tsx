@@ -1,13 +1,38 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Toggle from "react-toggle";
+import "react-toggle/style.css";
+import { useDarkMode } from "src/context/DarkModeContext";
 
 const Chat = () => {
+  const { setDarkMode } = useDarkMode();
+
   const navigate = useNavigate();
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode: any) => !prevMode);
+  };
 
   return (
     <>
       <StGo onClick={() => navigate("/ai")}>Chat 바로가기</StGo>
+
+      <Toggle
+        icons={{
+          checked: (
+            <span role="img" aria-label="moon">
+              🌙
+            </span>
+          ),
+          unchecked: (
+            <span role="img" aria-label="sun">
+              ☀️
+            </span>
+          ),
+        }}
+        onChange={toggleDarkMode}
+      />
     </>
   );
 };

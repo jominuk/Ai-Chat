@@ -3,7 +3,7 @@ import { Configuration, OpenAIApi } from "openai";
 import { styled } from "styled-components";
 import { Message, Sender } from "src/type/type";
 
-const Ai: FC = () => {
+const Ai: FC<any> = ({ darkMode }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -51,7 +51,7 @@ const Ai: FC = () => {
 
   return (
     <>
-      <StForm onSubmit={handleSendMessage}>
+      <StForm onSubmit={handleSendMessage} darkMode={darkMode}>
         <StChatContainer>
           {messages.map((message, index) => (
             <StMessageContainer key={index} sender={message.sender}>
@@ -77,9 +77,9 @@ const Ai: FC = () => {
 
 export default Ai;
 
-const StForm = styled.form`
-  background-color: #f2f2f2;
-  width: 300px;
+const StForm = styled.form<{ darkMode: any }>`
+  background-color: ${({ darkMode }) => (darkMode ? "#333" : "#f2f2f2")};
+  width: 350px;
   height: 600px;
   margin: auto;
   border-radius: 10px;
