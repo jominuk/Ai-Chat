@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Toggle from "react-toggle";
@@ -6,7 +6,7 @@ import "react-toggle/style.css";
 import { useDarkMode } from "src/context/DarkModeContext";
 
 const Chat = () => {
-  const { setDarkMode } = useDarkMode();
+  const { darkMode, setDarkMode } = useDarkMode();
 
   const navigate = useNavigate();
 
@@ -14,8 +14,16 @@ const Chat = () => {
     setDarkMode((prevMode: any) => !prevMode);
   };
 
+  useEffect(() => {
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
+
   return (
     <>
+      {/* <StToggle onClick={toggleDarkMode}>
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </StToggle> */}
+
       <ToggleContainer>
         <Toggle
           icons={{
@@ -31,6 +39,7 @@ const Chat = () => {
             ),
           }}
           onChange={toggleDarkMode}
+          checked={darkMode}
         />
       </ToggleContainer>
 
@@ -44,6 +53,10 @@ export default Chat;
 const ToggleContainer = styled.div`
   margin: 0 0 30px 50px;
 `;
+
+// const StToggle = styled.div`
+//   margin: 0 0 30px 50px;
+// `;
 
 const StGo = styled.div`
   background-color: pink;

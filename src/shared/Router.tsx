@@ -9,10 +9,7 @@ const Router = () => {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route
-            path="/ai"
-            element={<Ai darkMode={""} children={undefined} />}
-          />
+          <Route path="/ai" element={<Ai />} />
           <Route path="/" element={<Chat />} />
         </Routes>
       </Layout>
