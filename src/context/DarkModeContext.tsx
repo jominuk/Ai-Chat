@@ -5,9 +5,13 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { DarkMode } from "src/type/type";
+import { DarkMode, DarkModeContextType } from "src/type/type";
 
-const DarkModeContext = createContext<any>({});
+const DarkModeContext = createContext<DarkModeContextType>({
+  darkMode: false,
+  setDarkMode: () => {}, // Update the default value of setDarkMode
+  toggleDarkMode: () => {},
+});
 
 export const useDarkMode = () => useContext(DarkModeContext);
 
@@ -18,8 +22,12 @@ const DarkModeProvider: FC<DarkMode> = ({ children }) => {
     localStorage.setItem("darkMode", darkMode.toString());
   }, [darkMode]);
 
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
   return (
-    <DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
+    <DarkModeContext.Provider value={{ darkMode, setDarkMode, toggleDarkMode }}>
       {children}
     </DarkModeContext.Provider>
   );

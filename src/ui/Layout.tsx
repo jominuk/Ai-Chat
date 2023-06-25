@@ -1,16 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { DarkMode, LayoutProps } from "src/type/type";
+import { LayoutProps } from "src/type/type";
 import { useDarkMode } from "src/context/DarkModeContext";
 import Toggle from "react-toggle";
 import "react-toggle/style.css";
 
 const Layout: FC<LayoutProps> = ({ children }) => {
-  const { darkMode, setDarkMode } = useDarkMode();
-
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode: any) => !prevMode);
-  };
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
     <StBackLay darkMode={darkMode}>
@@ -46,7 +42,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
 export default Layout;
 
-const StBackLay = styled.div<{ darkMode: DarkMode }>`
+const StBackLay = styled.div<{ darkMode: boolean }>`
   background-color: ${({ darkMode }) => (darkMode ? "black" : "powderblue")};
   min-height: 100vh; /* Set the minimum height of the container to 100% of the viewport height */
   display: flex;

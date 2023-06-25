@@ -14,6 +14,11 @@ export interface Sender {
 }
 
 export interface DarkMode {
-  darkMode: string | any;
-  children: any;
+  children: React.ReactNode;
+}
+
+export interface DarkModeContextType {
+  darkMode: boolean;
+  setDarkMode: (value: boolean) => void; // Update the type of setDarkMode
+  toggleDarkMode: () => void;
 }
