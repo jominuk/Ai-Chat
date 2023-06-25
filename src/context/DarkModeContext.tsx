@@ -16,7 +16,8 @@ const DarkModeContext = createContext<DarkModeContextType>({
 export const useDarkMode = () => useContext(DarkModeContext);
 
 const DarkModeProvider: FC<DarkMode> = ({ children }) => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const storedDarkMode = localStorage.getItem("darkMode");
+  const [darkMode, setDarkMode] = useState<boolean>(storedDarkMode === "true");
 
   useEffect(() => {
     localStorage.setItem("darkMode", darkMode.toString());
