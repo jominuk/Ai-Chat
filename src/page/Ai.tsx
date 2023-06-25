@@ -2,20 +2,14 @@ import React, { useState, useRef, useEffect, FormEvent } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import { styled } from "styled-components";
 import { Message, Sender } from "src/type/type";
-import Toggle from "react-toggle";
-import "react-toggle/style.css";
 import { useDarkMode } from "src/context/DarkModeContext";
 
 const Ai = () => {
-  const { darkMode, setDarkMode } = useDarkMode();
+  const { darkMode } = useDarkMode();
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode: any) => !prevMode);
-  };
 
   const handleSendMessage = (e: FormEvent) => {
     e.preventDefault();
@@ -58,31 +52,8 @@ const Ai = () => {
     scrollToBottom();
   }, [messages]);
 
-  useEffect(() => {
-    localStorage.setItem("darkMode", darkMode);
-  }, [darkMode]);
-
   return (
     <>
-      <ToggleContainer>
-        <Toggle
-          icons={{
-            checked: (
-              <span role="img" aria-label="moon">
-                🌙
-              </span>
-            ),
-            unchecked: (
-              <span role="img" aria-label="sun">
-                ☀️
-              </span>
-            ),
-          }}
-          onChange={toggleDarkMode}
-          checked={darkMode}
-        />
-      </ToggleContainer>
-
       <StForm onSubmit={handleSendMessage} darkMode={darkMode}>
         <StChatContainer>
           {messages.map((message, index) => (
@@ -108,10 +79,6 @@ const Ai = () => {
 };
 
 export default Ai;
-
-const ToggleContainer = styled.div`
-  margin: 0 0 30px 50px;
-`;
 
 const StForm = styled.form<{ darkMode: any }>`
   background-color: ${({ darkMode }) => (darkMode ? "#333" : "#f2f2f2")};

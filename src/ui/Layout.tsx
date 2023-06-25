@@ -2,13 +2,44 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { DarkMode, LayoutProps } from "src/type/type";
 import { useDarkMode } from "src/context/DarkModeContext";
+import Toggle from "react-toggle";
+import "react-toggle/style.css";
 
 const Layout: FC<LayoutProps> = ({ children }) => {
-  const { darkMode } = useDarkMode();
+  const { darkMode, setDarkMode } = useDarkMode();
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode: any) => !prevMode);
+  };
 
   return (
     <StBackLay darkMode={darkMode}>
-      <StLayout>{children}</StLayout>
+      <StLayout>
+        {/* <StToggle onClick={toggleDarkMode}>
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </StToggle> */}
+
+        <ToggleContainer>
+          <Toggle
+            icons={{
+              checked: (
+                <span role="img" aria-label="moon">
+                  🌙
+                </span>
+              ),
+              unchecked: (
+                <span role="img" aria-label="sun">
+                  ☀️
+                </span>
+              ),
+            }}
+            onChange={toggleDarkMode}
+            checked={darkMode}
+          />
+        </ToggleContainer>
+
+        {children}
+      </StLayout>
     </StBackLay>
   );
 };
@@ -27,3 +58,11 @@ const StLayout = styled.div`
   margin: auto;
   border-radius: 10px;
 `;
+
+const ToggleContainer = styled.div`
+  margin: 0 0 30px 50px;
+`;
+
+// const StToggle = styled.div`
+//   margin: 0 0 30px 50px;
+// `;
