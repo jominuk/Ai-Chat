@@ -28,17 +28,22 @@ const Ai = () => {
       .createCompletion({
         model: "text-davinci-003",
         prompt: inputValue,
+        // ai 에게 질문 보내는 코드
         temperature: 1,
+        //0 ~ 1수준의 응답의 창의성을 나타냄 결국 0은 아주 짧게 1은 길게 ~
         max_tokens: 256,
+        // 최대 토큰 입력해준다. ex 1토큰에 영문 4자 답변을 해준다. 이 길이만큼 출력을 제한됨
         top_p: 1,
-        frequency_penalty: 0,
+        // 1과 같은 높을 숫자일 수록 다양한 응답이 생성
+        frequency_penalty: 1,
         presence_penalty: 0,
       })
       .then((result) => {
+        // 답변은 result변수에 잘 들어있음
         const response = result.data.choices[0].text || "";
         const newResponseMessage: Message = {
           content: response,
-          sender: "bot",
+          sender: "ai",
         };
         setMessages((prevMessages) => [...prevMessages, newResponseMessage]);
       });

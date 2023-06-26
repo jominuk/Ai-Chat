@@ -6,7 +6,7 @@ export interface LayoutProps {
 
 export interface Message {
   content: string;
-  sender: "me" | "bot";
+  sender: "me" | "ai";
 }
 
 export interface Sender {
