@@ -22,3 +22,7 @@ export interface DarkModeContextType {
   setDarkMode: (value: boolean) => void; // Update the type of setDarkMode
   toggleDarkMode: () => void;
 }
+
+export interface type {
+  number: number;
+}
